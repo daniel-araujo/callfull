@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Right now it's only testing if the code compiles. Need to test if it runs too.
+
+set -e
+
+dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+tmpfile=$(mktemp /tmp/callfull.XXXXXXXXXX)
+
+sed -n '/^```c/,/^```/ p' < "$dir/../README.md" | sed '1d;$d' > $tmpfile
+
+cc -I"$dir/.." -o /dev/null "$dir/../callfull.c" -xc - < $tmpfile
