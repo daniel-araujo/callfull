@@ -4,9 +4,23 @@
 
 set -e
 
-dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-tmpfile=$(mktemp /tmp/callfull.XXXXXXXXXX)
+dir="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+srcfile="$(mktemp /tmp/callfull.XXXXXXXXXX)"
+exefile="$(mktemp /tmp/callfull.XXXXXXXXXX)"
 
-sed -n '/^```c/,/^```/ p' < "$dir/../README.md" | sed '1d;$d' > $tmpfile
+sed -n '/^```c/,/^```/ p' < "$dir/../README.md" | sed '1d;$d' > "$srcfile"
 
-cc -I"$dir/.." -o /dev/null "$dir/../callfull.c" -xc - < $tmpfile
+cc -o "$exefile" -I"$dir/.." "$dir/../callfull.c" -xc - < "$srcfile"
+
+output="$("$exefile" < /dev/urandom)"
+
+expected="Process 1/4 (16000 bytes)
+Process 2/4 (16000 bytes)
+Process 3/4 (16000 bytes)
+Process 4/4 (16000 bytes)"
+
+if [ "$output" != "$expected" ]; then
+    echo "Unexpected output." >&2
+    echo "$output"
+    exit 1
+fi
