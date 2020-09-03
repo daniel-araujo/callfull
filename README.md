@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
         .threshold = samples_per_sec * bytes_per_sample
     });
 
-    while (callfull_times(callfull) <= total) {
+    while (callfull_times(callfull) < total) {
         char intermediate[5000];
 
         // Remember fread may not entirely fill your buffer.
