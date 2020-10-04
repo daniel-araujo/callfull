@@ -73,7 +73,7 @@ void callfull_destroy(callfull_t handle);
 enum callfull_error callfull_error(callfull_t handle);
 
 /*
- * Feeds data into the buffer. This calls the callback function if the buffer
+ * Adds data to the buffer. This calls the callback function if the buffer
  * gets filled. It can call callback multiple times if data overflows threshold.
  */
 void callfull_feed(callfull_t handle, const char *data, size_t size);
