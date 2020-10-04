@@ -96,3 +96,9 @@ const char *callfull_buffer(callfull_t handle);
  * How much data is accumulated in the buffer.
  */
 size_t callfull_size(callfull_t handle);
+
+/*
+ * Discards current contents in buffer and resets counter. It's as if no
+ * data has ever been fed.
+ */
+size_t callfull_reset(callfull_t handle);
