@@ -57,7 +57,11 @@ typedef struct callfull_handle *callfull_t;
 
 /*
  * Creates buffer. See options struct for more details.
- * You should call callfull_error to check if an error has ocurred.
+ *
+ * You must call callfull_error to check if the handle was successfully
+ * created. if the handle failed to be created correctly then you can only
+ * pass it to callfull_error and callfull_destroy. Any other functions will
+ * result in undefined behavior.
  */
 callfull_t callfull_create(struct callfull_opts *opts);
 
