@@ -74,6 +74,8 @@ Processing 4/4 (16000 bytes)
 
 Just copy `callfull.c` and `callfull.h` into your project and compile.
 
+You can safely include the header file in your C++ code.
+
 
 ## Documentation
 

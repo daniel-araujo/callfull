@@ -13,6 +13,13 @@ function(test_single_c_file target)
     add_test(NAME ${target} COMMAND ${target})
 endfunction(test_single_c_file)
 
+# For tests defined in a single C++ file.
+function(test_single_cpp_file target)
+    add_executable(${target} ${target}.cpp)
+    target_link_libraries(${target} callfull)
+    add_test(NAME ${target} COMMAND ${target})
+endfunction(test_single_cpp_file)
+
 # For tests defined in posix shell.
 function(test_sh target)
     add_test(NAME ${target} COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${target})
@@ -28,3 +35,4 @@ test_single_c_file(00006_increments_i_for_callback)
 test_single_c_file(00007_callback_size_is_correct)
 test_single_c_file(00008_reset_sets_times_to_0)
 test_single_c_file(00009_reset_discards_buffer)
+test_single_cpp_file(00010_header_can_be_included_in_cpp)

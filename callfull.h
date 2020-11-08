@@ -26,6 +26,11 @@
 
 #pragma once
 
+// This allows this header to be included in C++ sources files.
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // For size_t.
 #include <stdlib.h>
 
@@ -102,3 +107,7 @@ size_t callfull_size(callfull_t handle);
  * data has ever been fed.
  */
 size_t callfull_reset(callfull_t handle);
+
+#ifdef __cplusplus
+}
+#endif
