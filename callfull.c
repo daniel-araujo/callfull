@@ -147,6 +147,10 @@ size_t callfull_size(struct callfull_handle *handle)
 
 size_t callfull_reset(callfull_t handle)
 {
+	size_t discarded = handle->accumulated;
+
 	handle->accumulated = 0;
 	handle->times = 0;
+
+	return discarded;
 }

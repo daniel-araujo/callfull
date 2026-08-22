@@ -104,7 +104,8 @@ size_t callfull_size(callfull_t handle);
 
 /*
  * Discards current contents in buffer and resets counter. It's as if no
- * data has ever been fed.
+ * data has ever been fed. Returns how many bytes were sitting in the
+ * buffer and got discarded.
  */
 size_t callfull_reset(callfull_t handle);
 
