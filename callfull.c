@@ -24,6 +24,7 @@
 // out of or in connection with the software or the use or other dealings in the
 // software.
 
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -55,6 +56,10 @@ struct callfull_handle
 struct callfull_handle *callfull_create(struct callfull_opts *opts)
 {
 	if (opts->threshold == 0) {
+		return NULL;
+	}
+
+	if (opts->threshold > SIZE_MAX - sizeof(struct callfull_handle)) {
 		return NULL;
 	}
 
